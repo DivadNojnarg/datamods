@@ -146,10 +146,11 @@ edit_data_server <- function(id,
         }
 
         if (isTRUE(update)) {
+          # PATCH: we do it on the JS side since this is toooo slow
           data[, .datamods_edit_update := as.character(seq_len(.N))]
-          data[, .datamods_edit_update := list(
-            lapply(.datamods_edit_update, btn_update(ns("update")))
-          )]
+          #data[, .datamods_edit_update := list(
+          #  lapply(.datamods_edit_update, btn_update(ns("update")))
+          #)]
         } else {
           data[, .datamods_edit_update := NA]
         }

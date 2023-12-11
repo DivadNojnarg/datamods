@@ -253,12 +253,26 @@ format_edit_data <- function(data, colnames, internal_colnames = NULL) {
 #' @importFrom reactable colDef
 #'
 col_def_update <- function() {
+  session <- get("session", envir = parent.frame(n = 2))
+
   colDef(
     name = i18n("Update"),
     width = 82,
     sortable = FALSE,
     html = TRUE,
-    filterable = FALSE
+    filterable = FALSE,
+    cell = JS(
+      sprintf("function(cellInfo, state) {
+        return `
+          <button
+            onclick=\"Shiny.setInputValue('%s', ${cellInfo.value}, {priority: 'event'})\"
+            class='btn btn-secondary'
+          >
+            <i class=\"fas fa-pen\" role=\"presentation\" aria-label=\"pen icon\"></i>
+          </button>
+        `
+      }", session$ns("update"))
+    )
   )
 }
 
