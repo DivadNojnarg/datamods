@@ -200,6 +200,10 @@ table_display <- function(data, colnames = NULL, reactable_options = NULL) {
     setnames(data, old = seq_along(colnames), new = colnames)
   }
 
+  update_idx <- which(colnames(data) == ".datamods_edit_update")
+  tmp_cols <- c(".datamods_edit_update", colnames(data)[-update_idx])
+  data <- data[, ..tmp_cols]
+
   cols <- reactable_options$columns %||% list()
   if (all(is.na(data$.datamods_edit_update))) {
     cols$.datamods_edit_update <- colDef(show = FALSE)
