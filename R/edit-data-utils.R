@@ -270,7 +270,7 @@ col_def_update <- function() {
         return `
           <button
             onclick=\"Shiny.setInputValue('%s', ${cellInfo.value}, {priority: 'event'})\"
-            class='btn btn-secondary'
+            class='btn btn-secondary btn-sm'
           >
             <i class=\"fas fa-pen\" role=\"presentation\" aria-label=\"pen icon\"></i>
           </button>
